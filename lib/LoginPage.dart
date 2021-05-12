@@ -1,6 +1,16 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:proyect/HomePage.dart';
+import 'package:proyect/PrincipalPage.dart';
+import 'package:proyect/RegistroPage.dart';
+import 'package:proyect/firebasePage.dart';
 import 'FormValidator.dart';
 import 'LoginRequestData.dart';
+
+LoginRequestData _loginData = LoginRequestData();
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -14,7 +24,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _key = new GlobalKey();
   bool _validate = false;
-  LoginRequestData _loginData = LoginRequestData();
+
   bool _obscureText = true;
 
   @override
@@ -118,14 +128,32 @@ class _LoginPageState extends State<LoginPage> {
 
   _sendToRegisterPage() {
     ///Go to register page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterPage()),
+    );
   }
 
-  _sendToServer() {
+  _sendToServer() async {
     if (_key.currentState.validate()) {
       /// No any error in validation
       _key.currentState.save();
       print("Email ${_loginData.email}");
       print("Password ${_loginData.password}");
+      bool estado = await _loadData();
+      print(estado);
+
+      if (await _loadData()) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } else {
+        _showDialog();
+        setState(() {
+          _validate = true;
+        });
+      }
     } else {
       ///validation error
       setState(() {
@@ -162,5 +190,71 @@ class _LoginPageState extends State<LoginPage> {
             ],
           );
         });
+  }
+
+  Future<Null> _showDialog() async {
+    await showDialog<String>(
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+            title: const Text('Error: Los datos ingresados son erroneos'),
+            contentPadding: EdgeInsets.all(5.0),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("Ok"),
+                onPressed: () async {
+                  _loginData.email = "";
+                  Navigator.pop(context);
+                },
+              ),
+              new FlatButton(
+                child: new Text("Cancel"),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          );
+        });
+  }
+}
+
+const jsonCodec = const JsonCodec();
+final url = Uri.https('tenacious-crane-291714-default-rtdb.firebaseio.com',
+    '/prueba/usuarios.json', {'q': '{http}'});
+final httpClient = new Client();
+
+Future<bool> _loadData() async {
+  var st = false;
+  var response = await httpClient.get(url);
+  print('response=' + response.body);
+  var todos = jsonCodec.decode(response.body);
+  print(todos.keys.forEach((key) async {
+    print(key);
+    if (key != null || key != '' || key != 'null') {
+      if (todos[key.toString()]['email'].toString() == _loginData.email) {
+        if (todos[key.toString()]['password'].toString() ==
+            _loginData.password.toString()) {
+          st = true;
+        }
+      }
+    }
+  }));
+  return st;
+}
+
+class Todo {
+  bool finished;
+  String name, nameCompany, typeId, id, nit, email, password;
+  Todo(this.name, this.nameCompany, this.typeId, this.id, this.email,
+      this.password);
+
+  Map toJson() {
+    return {
+      "name": name,
+      "name_company": nameCompany,
+      "type_id": typeId,
+      "id": id,
+      "email": email,
+      "password": password
+    };
   }
 }
