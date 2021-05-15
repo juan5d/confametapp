@@ -11,9 +11,9 @@ class RegisterPage extends StatefulWidget {
 String _id = '1121';
 
 class _RegisterPageState extends State<RegisterPage> {
-  void _inc() {
-    _loadData();
-  }
+  // void _inc() {
+  //   _loadData();
+  // }
 
   GlobalKey<FormState> keyForm = new GlobalKey();
   TextEditingController nameCtrl = new TextEditingController();
@@ -243,8 +243,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   String validateMobile(String value) {
     _id = value;
-    String patttern = r'(^[0-9]*$)';
-    RegExp regExp = new RegExp(patttern);
+    //String patttern = r'(^[0-9]*$)';
+    // RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "El id es necesariod";
     }
@@ -290,13 +290,13 @@ final url = Uri.https('tenacious-crane-291714-default-rtdb.firebaseio.com',
     '/prueba/usuarios/' + _id.toString() + '.json', {'q': '{http}'});
 final httpClient = new Client();
 
-_loadData() async {
-  var response = await httpClient.get(url);
-  print('response=' + response.body);
-  var todos = jsonCodec.decode(response.body);
+// _loadData() async {
+//   var response = await httpClient.get(url);
+//   print('response=' + response.body);
+//   var todos = jsonCodec.decode(response.body);
 
-  print(todos.length.toString());
-}
+//   print(todos.length.toString());
+// }
 
 _saveData(Todo todo) async {
   var json = jsonCodec.encode(todo);

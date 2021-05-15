@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/page/ServicePage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,12 +27,16 @@ class _HomePageState extends State<HomePage> {
               child: Text('Drawer Header'),
             ),
             ListTile(
-              title: Text('Item 1'),
+              title: Text('Servicios'),
               onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ServicePage()),
+                );
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
               },
             ),
             ListTile(

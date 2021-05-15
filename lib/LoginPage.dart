@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:proyect/HomePage.dart';
-import 'package:proyect/PrincipalPage.dart';
 import 'package:proyect/RegistroPage.dart';
-import 'package:proyect/firebasePage.dart';
 import 'FormValidator.dart';
 import 'LoginRequestData.dart';
 
