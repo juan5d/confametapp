@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: new SingleChildScrollView(
         child: new Container(
-          margin: new EdgeInsets.all(60.0),
+          margin: new EdgeInsets.all(10.0),
           child: new Form(
             key: keyForm,
             child: formUI(),
@@ -46,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   formItemsDesign(icon, item) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 7),
+      padding: EdgeInsets.symmetric(vertical: 0),
       child: Card(child: ListTile(leading: Icon(icon), title: item)),
     );
   }

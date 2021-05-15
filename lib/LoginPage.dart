@@ -4,9 +4,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:proyect/HomePage.dart';
-import 'package:proyect/PrincipalPage.dart';
 import 'package:proyect/RegistroPage.dart';
-import 'package:proyect/firebasePage.dart';
 import 'FormValidator.dart';
 import 'LoginRequestData.dart';
 
@@ -113,14 +111,14 @@ class _LoginPageState extends State<LoginPage> {
         new FlatButton(
           child: Text(
             'Forgot password?',
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(color: Colors.white),
           ),
           onPressed: _showForgotPasswordDialog,
         ),
         new FlatButton(
           onPressed: _sendToRegisterPage,
           child: Text('Not a member? Sign up now',
-              style: TextStyle(color: Colors.black54)),
+              style: TextStyle(color: Colors.white)),
         ),
       ],
     );
