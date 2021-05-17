@@ -110,14 +110,14 @@ class _LoginPageState extends State<LoginPage> {
         new FlatButton(
           child: Text(
             'Forgot password?',
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(color: Colors.white),
           ),
           onPressed: _showForgotPasswordDialog,
         ),
         new FlatButton(
           onPressed: _sendToRegisterPage,
           child: Text('Not a member? Sign up now',
-              style: TextStyle(color: Colors.black54)),
+              style: TextStyle(color: Colors.white)),
         ),
       ],
     );
