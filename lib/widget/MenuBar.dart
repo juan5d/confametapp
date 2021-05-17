@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyect/HomePage.dart';
+import 'package:proyect/page/RegEmplePage.dart';
 import 'package:proyect/page/ServicePage.dart';
 
 class MenuBar extends StatelessWidget {
@@ -33,7 +34,7 @@ class MenuBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
-            title: Text('Cart'),
+            title: Text('Servicios'),
             onTap: () => {
               Navigator.of(context).pop(),
               Navigator.push(
@@ -44,8 +45,14 @@ class MenuBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.border_color),
-            title: Text('Feedback'),
-            onTap: () => {Navigator.of(context).pop()},
+            title: Text('Empleados'),
+            onTap: () {
+              Navigator.of(context).pop();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegEmplePage()),
+              );
+            },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),

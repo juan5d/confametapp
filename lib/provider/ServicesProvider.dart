@@ -7,35 +7,37 @@ class ServicesProvider {
   final List<ServiceItemModel> itemsModel = [
     ServiceItemModel(
         name: "Subsidios",
-        description: "Descripción de Subsidios...",
+        description:
+            "Consulte el estado de los subsidios a los que tiene derecho",
         srcLogo: "assets/img/Subsidy.png"),
     ServiceItemModel(
         name: "Vivienda",
-        description: "Descripción de Vivienda...",
+        description:
+            "Conozca el proceso o consulte información de su postulación",
         srcLogo: "assets/img/House.png"),
     ServiceItemModel(
         name: "Educación",
-        description: "Descripción de Educación...",
+        description: "Consulte los cursos y programas de formación",
         srcLogo: "assets/img/Education.png"),
     ServiceItemModel(
         name: "Empleo",
-        description: "Descripción de Empleo...",
+        description: "Consulte las ofertas laborales disponibles",
         srcLogo: "assets/img/Job.png"),
     ServiceItemModel(
         name: "Crédito",
-        description: "Descripción de Crédito...",
+        description: "Consulte y solicite productos de crédito",
         srcLogo: "assets/img/Credit.png"),
     ServiceItemModel(
         name: "Cultura",
-        description: "Descripción de Cultura...",
+        description: "Consulte los concursos y talleres culturales",
         srcLogo: "assets/img/Culture.png"),
     ServiceItemModel(
         name: "Turismo",
-        description: "Descripción de Turismo...",
+        description: "Consulte los centros y planes turisticos",
         srcLogo: "assets/img/Tourism.png"),
     ServiceItemModel(
         name: "Recreación",
-        description: "Descripción de Recreación...",
+        description: "Consulte los programas y centros recreativos",
         srcLogo: "assets/img/Recreation.png"),
   ];
 
