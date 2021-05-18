@@ -43,6 +43,7 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
       ageCtrl.clear();
       _selectedGender = '';
       _tipDocVal = "CC";
+      listE = employerProvider.getEmployees();
     });
   }
 
@@ -229,6 +230,14 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                                   onPressed: () {
                                     if (_keyForm.currentState.validate())
                                       processData();
+
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              RegistroEmplePage()),
+                                    );
                                   },
                                 ),
                               ),

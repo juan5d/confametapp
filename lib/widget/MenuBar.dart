@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/helper/SessioData.dart';
 import 'package:proyect/page/HomePage.dart';
 import 'package:proyect/page/LoginPage.dart';
 import 'package:proyect/page/RegistroEmplePage.dart';
@@ -73,22 +74,25 @@ class MenuBar extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: Colors.blue),
               ),
-              child: Center(
-                child: ListTile(
-                  title:
-                      Text('Beneficios', style: TextStyle(color: Colors.black)),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ServicePage()),
-                    );
-                  },
-                ),
-              ),
+              child: (SessionData.userType == 1)
+                  ? Center(
+                      child: ListTile(
+                        title: Text('Beneficios',
+                            style: TextStyle(color: Colors.black)),
+                        onTap: () {
+                          // Update the state of the app
+                          // ...
+                          // Then close the drawer
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ServicePage()),
+                          );
+                        },
+                      ),
+                    )
+                  : Center(),
             ),
             Container(
               decoration: BoxDecoration(
