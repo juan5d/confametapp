@@ -18,6 +18,34 @@ class FormValidator {
     return null;
   }
 
+  String validateName(String value) {
+    value ??= '';
+    if (value.isEmpty) return "Este campo es requerido.";
+
+    return null;
+  }
+
+  String validateDoc(String value) {
+    value ??= '';
+    if (value.isEmpty) return "Este campo es requerido.";
+
+    if (value.length == 9) return "Número incorrecto";
+
+    return null;
+  }
+
+  String validateAge(String value) {
+    value ??= '';
+    if (value.isEmpty) return "Este campo es requerido.";
+
+    if (int.tryParse(value) == null) return "El valor no es un número.";
+
+    if (int.parse(value) < 14 || int.parse(value) > 90)
+      return "Valor fuera del rango.";
+
+    return null;
+  }
+
   String validateEmail(String value) {
     String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';

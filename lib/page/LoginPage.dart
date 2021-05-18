@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:proyect/HomePage.dart';
-import 'package:proyect/RegistroPage.dart';
-import 'FormValidator.dart';
-import 'LoginRequestData.dart';
+import 'package:proyect/helper/SessioData.dart';
+import 'package:proyect/page/HomePage.dart';
+import 'package:proyect/page/RegistroPage.dart';
+import 'package:proyect/helper/FormValidator.dart';
+import 'package:proyect/model/LoginRequestData.dart';
 
 LoginRequestData _loginData = LoginRequestData();
 
@@ -230,6 +231,14 @@ Future<bool> _loadData() async {
       if (todos[key.toString()]['email'].toString() == _loginData.email) {
         if (todos[key.toString()]['password'].toString() ==
             _loginData.password.toString()) {
+          SessionData.id = key.toString();
+          SessionData.name = todos[key.toString()]['name'].toString();
+          SessionData.nameCompany =
+              todos[key.toString()]['name_company'].toString();
+          SessionData.userType = (["CC", "TI"]
+                  .contains(todos[key.toString()]['type_id'].toString()))
+              ? 1
+              : 2;
           st = true;
         }
       }
