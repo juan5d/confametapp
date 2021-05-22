@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
       print(estado);
 
       if (await _loadData()) {
-        Navigator.pop();
+        Navigator.pop(context);
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
