@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/helper/SessioData.dart';
+import 'package:proyect/page/RegistroEmplePage.dart';
 import 'package:proyect/page/ServicePage.dart';
 import 'package:proyect/widget/MenuBar.dart';
 
@@ -47,7 +49,10 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ServicePage()),
+                    MaterialPageRoute(
+                        builder: (context) => (SessionData.userType == 1)
+                            ? ServicePage()
+                            : RegistroEmplePage()),
                   );
                 },
                 shape: RoundedRectangleBorder(
