@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:proyect/helper/SessioData.dart';
 import 'package:proyect/page/HomePage.dart';
+import 'package:proyect/page/ProveedorPage.dart';
 import 'package:proyect/page/RegistroPage.dart';
 import 'package:proyect/helper/FormValidator.dart';
 import 'package:proyect/model/LoginRequestData.dart';
@@ -110,17 +111,29 @@ class _LoginPageState extends State<LoginPage> {
         ),
         new FlatButton(
           child: Text(
-            'Forgot password?',
+            'Olvidé mi contraseña',
             style: TextStyle(color: Colors.white),
           ),
           onPressed: _showForgotPasswordDialog,
         ),
         new FlatButton(
           onPressed: _sendToRegisterPage,
-          child: Text('Not a member? Sign up now',
+          child: Text('No tengo usuario. Registrarme!',
               style: TextStyle(color: Colors.white)),
         ),
+        new FlatButton(
+          onPressed: _sendToSupplierPage,
+          child: Text('Soy proveedor', style: TextStyle(color: Colors.white)),
+        ),
       ],
+    );
+  }
+
+  _sendToSupplierPage() {
+    ///Go to register page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProveedorPage()),
     );
   }
 
@@ -142,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
       print(estado);
 
       if (await _loadData()) {
+        Navigator.pop();
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyect/helper/SessioData.dart';
 import 'package:proyect/page/HomePage.dart';
 import 'package:proyect/page/LoginPage.dart';
-import 'package:proyect/page/RegistroEmplePage.dart';
+import 'package:proyect/page/PerfilPage.dart';
 import 'package:proyect/page/ServicePage.dart';
 
 class MenuBar extends StatelessWidget {
@@ -64,8 +64,7 @@ class MenuBar extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => RegistroEmplePage()),
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
                   );
                 },
               ),
@@ -103,6 +102,7 @@ class MenuBar extends StatelessWidget {
                   title: Text('Cerrar Sesión',
                       style: TextStyle(color: Colors.black)),
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),

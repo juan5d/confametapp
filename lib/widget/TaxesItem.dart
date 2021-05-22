@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:proyect/model/TaxesModel.dart';
 
-import 'package:proyect/model/EmployeeModel.dart';
+class TaxesItem extends StatelessWidget {
+  final TaxesModel taxesModel;
 
-class EmployeeItem extends StatelessWidget {
-  final TaxesModel employeeModel;
-  EmployeeItem({this.employeeModel});
+  TaxesItem({this.taxesModel});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,9 +22,7 @@ class EmployeeItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Image.asset((employeeModel.gender == 'M')
-                      ? 'assets/img/Man.png'
-                      : 'assets/img/Woman.png'),
+                  child: Image.asset('assets/img/doc-icon.png'),
                 ),
               ),
               Expanded(
@@ -36,9 +34,9 @@ class EmployeeItem extends StatelessWidget {
                       child: Container(
                         //color: Colors.blueGrey,
                         child: Text(
-                          employeeModel.name,
+                          taxesModel.subject,
                           style: TextStyle(
-                            fontSize: 20.0,
+                            fontSize: 18.0,
                             color: Colors.white,
                           ),
                         ),
@@ -55,7 +53,18 @@ class EmployeeItem extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 2.0),
                               child: Text(
-                                "${employeeModel.tipDoc} \t ${employeeModel.numDoc}",
+                                "Vigencia: ${taxesModel.iniDate} - ${taxesModel.finDate}",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              child: Text(
+                                "Retención: ${(taxesModel.tax)}",
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.white70,
@@ -66,18 +75,7 @@ class EmployeeItem extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 2.0),
                               child: Text(
-                                "Genero: ${(employeeModel.gender)}",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.white70,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
-                              child: Text(
-                                "Edad: ${employeeModel.age}",
+                                "Valor: ${taxesModel.value}",
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.white70,

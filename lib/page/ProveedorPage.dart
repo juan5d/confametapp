@@ -1,57 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:proyect/helper/FormValidator.dart';
 import 'package:proyect/model/EmployeeModel.dart';
-import 'package:proyect/provider/EmployerProvider.dart';
-import 'package:proyect/provider/ServicesProvider.dart';
-import 'package:proyect/widget/EmployeeItem.dart';
+import 'package:proyect/provider/TaxesProvider.dart';
 import 'package:proyect/widget/MenuBar.dart';
-import 'package:proyect/widget/ServiceItem.dart';
+import 'package:proyect/widget/TaxesItem.dart';
 
-class RegistroEmplePage extends StatefulWidget {
+class ProveedorPage extends StatefulWidget {
   @override
-  _RegistroEmplePageState createState() => _RegistroEmplePageState();
+  _ProveedorPageState createState() => _ProveedorPageState();
 }
 
-class _RegistroEmplePageState extends State<RegistroEmplePage> {
+class _ProveedorPageState extends State<ProveedorPage> {
   GlobalKey<FormState> _keyForm = new GlobalKey();
   final nameCtrl = new TextEditingController();
   final numdoCtrl = new TextEditingController();
   final ageCtrl = new TextEditingController();
-  List _tipDoc = ["CC", "TI", "PE", "PA"];
+  List _tipDoc = ["CC", "NIT"];
   var _tipDocVal = "CC";
-  var _selectedGender = '';
-  final ServicesProvider provider = ServicesProvider();
-  final EmployerProvider employerProvider = EmployerProvider();
-  TaxesModel employee;
 
-  List<ServiceItem> list = [];
+  final TaxesProvider taxesProvider = TaxesProvider();
+  TaxesModel taxes;
+
   Future<List<TaxesModel>> listE;
 
   processData() {
-    employee = TaxesModel(
-        name: nameCtrl.text,
-        tipDoc: _tipDocVal,
-        numDoc: numdoCtrl.text,
-        age: ageCtrl.text,
-        gender: _selectedGender);
-
-    employerProvider.saveEmployee(employee);
-
     setState(() {
-      nameCtrl.clear();
       numdoCtrl.clear();
       ageCtrl.clear();
-      _selectedGender = '';
       _tipDocVal = "CC";
-      listE = employerProvider.getEmployees();
+      listE = taxesProvider.getTaxes();
     });
   }
 
   @override
   void initState() {
-    listE = employerProvider.getEmployees();
-    list = provider.getServicesList();
-
     super.initState();
   }
 
@@ -60,7 +42,7 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
     return Scaffold(
       drawer: MenuBar(),
       appBar: AppBar(
-        title: Text("Registro de empleados"),
+        title: Text("Consulta proveedores"),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -79,15 +61,14 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child:
-                              Text("Nombre", style: TextStyle(fontSize: 18.0)),
+                          child: Text("# de documento",
+                              style: TextStyle(fontSize: 18.0)),
                         ),
                         TextFormField(
-                          controller: nameCtrl,
-                          validator: FormValidator().validateName,
+                          controller: numdoCtrl,
+                          validator: FormValidator().validateDoc,
                           decoration: InputDecoration(
-                            labelText: 'Ingrese nombre',
-                            fillColor: Colors.white,
+                            labelText: 'Ingrese # documento o NIT',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),
@@ -134,78 +115,6 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text("# de identificación",
-                              style: TextStyle(fontSize: 18.0)),
-                        ),
-                        TextFormField(
-                          controller: numdoCtrl,
-                          validator: FormValidator().validateDoc,
-                          decoration: InputDecoration(
-                            labelText: 'Ingrese identificación',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text("Sexo", style: TextStyle(fontSize: 18.0)),
-                        ),
-                        Row(children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Radio(
-                                  value: 'M',
-                                  groupValue: _selectedGender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _selectedGender = value;
-                                    });
-                                  },
-                                ),
-                                Text("Masculino",
-                                    style: TextStyle(fontSize: 18.0)),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Radio(
-                                  value: 'F',
-                                  groupValue: _selectedGender,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _selectedGender = value;
-                                    });
-                                  },
-                                ),
-                                Text("Femenino",
-                                    style: TextStyle(fontSize: 18.0)),
-                              ],
-                            ),
-                          )
-                        ]),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Text("Edad", style: TextStyle(fontSize: 18.0)),
-                        ),
-                        TextFormField(
-                          controller: ageCtrl,
-                          validator: FormValidator().validateAge,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            labelText: 'Ingrese la edad',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                            ),
-                          ),
-                        ),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -215,7 +124,7 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                                     const EdgeInsets.symmetric(vertical: 10.0),
                                 child: ElevatedButton(
                                   child: Text(
-                                    "Registrar",
+                                    "Consultar",
                                     style: TextStyle(
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.bold),
@@ -236,7 +145,7 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              RegistroEmplePage()),
+                                              ProveedorPage()),
                                     );
                                   },
                                 ),
@@ -257,10 +166,10 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
                   future: listE,
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
-                      List<EmployeeItem> listView = [];
+                      List<TaxesItem> listView = [];
                       snapshot.data.forEach((element) {
                         listView.add(
-                          EmployeeItem(employeeModel: element),
+                          TaxesItem(taxesModel: element),
                         );
                       });
 

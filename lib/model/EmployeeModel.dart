@@ -1,5 +1,5 @@
-class EmployeeModel {
-  EmployeeModel({this.name, this.numDoc, this.tipDoc, this.age, this.gender});
+class TaxesModel {
+  TaxesModel({this.name, this.numDoc, this.tipDoc, this.age, this.gender});
 
   String name;
   String numDoc;
@@ -7,7 +7,7 @@ class EmployeeModel {
   String age;
   String gender;
 
-  factory EmployeeModel.fromJson(Map<String, dynamic> json) => EmployeeModel(
+  factory TaxesModel.fromJson(Map<String, dynamic> json) => TaxesModel(
         name: json["name"],
         numDoc: json["num_doc"],
         tipDoc: json["tip_doc"],
