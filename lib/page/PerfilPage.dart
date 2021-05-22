@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyect/helper/SessioData.dart';
+import 'package:proyect/page/LoginPage.dart';
+import 'package:proyect/page/RegistroEmplePage.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -130,7 +132,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Expanded(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          RegistroEmplePage()),
+                                );
+                              },
                               child: Text(
                                 "Administrar empleados",
                               ),
@@ -156,10 +166,17 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
                           child: Text(
                             "Cerrar sesión",
                           ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.red,
                             padding: const EdgeInsets.symmetric(vertical: 20.0),

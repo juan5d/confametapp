@@ -1,6 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import 'package:proyect/model/EmployeeModel.dart';
+import 'package:proyect/model/TaxesModel.dart';
 
 class TaxesProvider {
   List<TaxesModel> listTaxes = [];
@@ -17,6 +17,7 @@ class TaxesProvider {
       jsonResponse.forEach((key, value) => listTaxes.add(
             TaxesModel.fromJson(value),
           ));
+      print(listTaxes);
     }
     return listTaxes;
   }

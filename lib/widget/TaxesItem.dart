@@ -50,8 +50,7 @@ class TaxesItem extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              padding: const EdgeInsets.symmetric(vertical: 0),
                               child: Text(
                                 "Vigencia: ${taxesModel.iniDate} - ${taxesModel.finDate}",
                                 style: TextStyle(
@@ -61,8 +60,7 @@ class TaxesItem extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              padding: const EdgeInsets.symmetric(vertical: 0),
                               child: Text(
                                 "Retención: ${(taxesModel.tax)}",
                                 style: TextStyle(
@@ -72,8 +70,7 @@ class TaxesItem extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
+                              padding: const EdgeInsets.symmetric(vertical: 0),
                               child: Text(
                                 "Valor: ${taxesModel.value}",
                                 style: TextStyle(

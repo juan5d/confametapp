@@ -22,13 +22,13 @@ class _RegistroEmplePageState extends State<RegistroEmplePage> {
   var _selectedGender = '';
   final ServicesProvider provider = ServicesProvider();
   final EmployerProvider employerProvider = EmployerProvider();
-  TaxesModel employee;
+  EmployeeModel employee;
 
   List<ServiceItem> list = [];
-  Future<List<TaxesModel>> listE;
+  Future<List<EmployeeModel>> listE;
 
   processData() {
-    employee = TaxesModel(
+    employee = EmployeeModel(
         name: nameCtrl.text,
         tipDoc: _tipDocVal,
         numDoc: numdoCtrl.text,

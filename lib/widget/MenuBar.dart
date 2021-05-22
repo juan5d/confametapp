@@ -28,7 +28,7 @@ class MenuBar extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 50,
                   child: ClipOval(
-                    child: Image.asset("assets/avatar-icon.png"),
+                    child: Image.asset("assets/img/avatar-icon.png"),
                   ),
                 ),
               ),

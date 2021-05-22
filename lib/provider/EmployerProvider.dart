@@ -4,8 +4,8 @@ import 'package:proyect/helper/SessioData.dart';
 import 'package:proyect/model/EmployeeModel.dart';
 
 class EmployerProvider {
-  List<TaxesModel> listEmployee = [];
-  Future<List<TaxesModel>> getEmployees() async {
+  List<EmployeeModel> listEmployee = [];
+  Future<List<EmployeeModel>> getEmployees() async {
     String _id = SessionData.id;
     var url = Uri.https('comfameta-default-rtdb.firebaseio.com',
         '/Employer/$_id/Employee.json', {"print": "pretty"});
@@ -16,13 +16,13 @@ class EmployerProvider {
       var jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       jsonResponse.forEach((key, value) => listEmployee.add(
-            TaxesModel.fromJson(value),
+            EmployeeModel.fromJson(value),
           ));
     }
     return listEmployee;
   }
 
-  Future<bool> saveEmployee(TaxesModel employee) async {
+  Future<bool> saveEmployee(EmployeeModel employee) async {
     String _id = SessionData.id;
     String _ide = employee.numDoc;
     var _body = convert.jsonEncode(employee.toJson());

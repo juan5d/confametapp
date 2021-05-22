@@ -149,10 +149,10 @@ class _LoginPageState extends State<LoginPage> {
     if (_key.currentState.validate()) {
       /// No any error in validation
       _key.currentState.save();
-      print("Email ${_loginData.email}");
-      print("Password ${_loginData.password}");
+      //print("Email ${_loginData.email}");
+      //print("Password ${_loginData.password}");
       bool estado = await _loadData();
-      print(estado);
+      //print(estado);
 
       if (await _loadData()) {
         Navigator.pop(context);
@@ -237,10 +237,10 @@ final httpClient = new Client();
 Future<bool> _loadData() async {
   var st = false;
   var response = await httpClient.get(url);
-  print('response=' + response.body);
+  //rint('response=' + response.body);
   var todos = jsonCodec.decode(response.body);
-  print(todos.keys.forEach((key) async {
-    print(key);
+  todos.keys.forEach((key) async {
+    //print(key);
     if (key != null || key != '' || key != 'null') {
       if (todos[key.toString()]['email'].toString() == _loginData.email) {
         if (todos[key.toString()]['password'].toString() ==
@@ -257,7 +257,8 @@ Future<bool> _loadData() async {
         }
       }
     }
-  }));
+  });
+
   return st;
 }
 
