@@ -1,6 +1,6 @@
 # COMFAMETAPP
 
-A new Flutter project.
+No se requiere alguna condición especial para la ejecución del proyecto. Tal vez ejecutar el comando flutter pub get despues de clonarlo para actualizar referencias.
 
 ## Usuarios de prueba
 #Empleador
